@@ -8,19 +8,222 @@
         "env": []
     },
     {
-        "id": "9e47507eeeef922a",
-        "type": "debug",
+        "id": "5ba67a4157c9a3da",
+        "type": "modbus-client",
+        "name": "PLC",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.3.39",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "562da5ae583b17ca",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 24,
+                "sy": 24,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "955e8c8167ac775d",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "6e7e701f2d4f700e",
+        "type": "ui_group",
+        "name": "Mediciones principales del sistema propulsor",
+        "tab": "955e8c8167ac775d",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bf7ce2e8147e689f",
+        "type": "modbus-read",
         "z": "f02000bddfb616f2",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 440,
-        "y": 120,
-        "wires": []
+        "name": "Lectura de PLC",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "6",
+        "quantity": "4",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "5ba67a4157c9a3da",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 240,
+        "y": 260,
+        "wires": [
+            [
+                "b799a18eb9081daf"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b799a18eb9081daf",
+        "type": "function",
+        "z": "f02000bddfb616f2",
+        "name": "function 1",
+        "func": "let valores = msg.payload;\nif (valores.length < 1)\n    return null;\n    \nmsg.payload = [\n    { sensor: \"T° de agua de enfriamiento HT del motor principal\", valor: 23.5, unidad: \" °C\" },\n    { sensor: \"Presión de aceite de lubricación del motor principal\", valor: 45, unidad: \" Bar\" },\n    { sensor: \"Presión de aceite de embrague Norgear \", valor: 1012, unidad: \" Bar\" }\n];\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 260,
+        "wires": [
+            [
+                "9ca42b27129b3122"
+            ]
+        ]
+    },
+    {
+        "id": "9ca42b27129b3122",
+        "type": "ui_template",
+        "z": "f02000bddfb616f2",
+        "group": "6e7e701f2d4f700e",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    .dark-table {\n        width: 100%;\n        border-collapse: collapse;\n        font-family: 'Segoe UI', sans-serif;\n        background-color: #1e1e1e;\n        color: #ffffff;\n        border-radius: 8px;\n        overflow: hidden;\n        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);\n    }\n\n    .dark-table th,\n    .dark-table td {\n        padding: 12px 16px;\n        text-align: left;\n        border-bottom: 1px solid #333;\n    }\n\n    .dark-table th {\n        background-color: #2d2d2d;\n        font-weight: bold;\n    }\n\n    .dark-table tr:hover {\n        background-color: #333333;\n    }\n</style>\n\n<table class=\"dark-table\">    \n    <tbody>\n        <tr ng-repeat=\"item in msg.payload\">\n            <td>{{item.sensor}}</td>\n            <td>{{item.valor}} {{item.unidad}}</td>\n        </tr>\n    </tbody>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 800,
+        "y": 260,
+        "wires": [
+            []
+        ]
     }
 ]
