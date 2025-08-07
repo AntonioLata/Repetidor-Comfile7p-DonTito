@@ -138,9 +138,11 @@
     {
         "id": "955e8c8167ac775d",
         "type": "ui_tab",
-        "name": "Tab 1",
+        "name": "Mediciones principales del sistema propulsor",
         "icon": "dashboard",
-        "order": 1
+        "order": 1,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "6e7e701f2d4f700e",
@@ -148,7 +150,7 @@
         "name": "Mediciones principales del sistema propulsor",
         "tab": "955e8c8167ac775d",
         "order": 1,
-        "disp": true,
+        "disp": false,
         "width": "24",
         "collapse": false,
         "className": ""
@@ -180,7 +182,8 @@
         "y": 260,
         "wires": [
             [
-                "b799a18eb9081daf"
+                "b799a18eb9081daf",
+                "9b5e6873ce9caec6"
             ],
             []
         ]
@@ -190,7 +193,7 @@
         "type": "function",
         "z": "f02000bddfb616f2",
         "name": "function 1",
-        "func": "let valores = msg.payload;\nif (valores.length < 1)\n    return null;\n    \nmsg.payload = [\n    { sensor: \"T° de agua de enfriamiento HT del motor principal\", valor: 23.5, unidad: \" °C\" },\n    { sensor: \"Presión de aceite de lubricación del motor principal\", valor: 45, unidad: \" Bar\" },\n    { sensor: \"Presión de aceite de embrague Norgear \", valor: 1012, unidad: \" Bar\" }\n];\nreturn msg;\n",
+        "func": "let valores = msg.payload;\nif (valores.length < 1)\n    return null;\n    \nlet analogo = [];\nfor(let i=0; i<4; i++){\n    let valor = msg.payload[i];\n    //Negativo ?\n    if(valor > 32767){ //negativo\n        valor = valor - 65536;\n    }    \n    analogo.push(valor);\n}\n\n\nmsg.payload = [\n    { sensor: \"T° agua de enfr. HT - motor principal\", valor: analogo[0], unidad: \" °C\" },\n    { sensor: \"Presión aceite lub. - motor principal\", valor: analogo[2], unidad: \" Bar\" },\n    { sensor: \"Presión aceite embrague Norgear \", valor: analogo[3], unidad: \" Bar\" }\n];\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -212,9 +215,9 @@
         "group": "6e7e701f2d4f700e",
         "name": "",
         "order": 0,
-        "width": 0,
-        "height": 0,
-        "format": "<style>\n    .dark-table {\n        width: 100%;\n        border-collapse: collapse;\n        font-family: 'Segoe UI', sans-serif;\n        background-color: #1e1e1e;\n        color: #ffffff;\n        border-radius: 8px;\n        overflow: hidden;\n        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);\n    }\n\n    .dark-table th,\n    .dark-table td {\n        padding: 12px 16px;\n        text-align: left;\n        border-bottom: 1px solid #333;\n    }\n\n    .dark-table th {\n        background-color: #2d2d2d;\n        font-weight: bold;\n    }\n\n    .dark-table tr:hover {\n        background-color: #333333;\n    }\n</style>\n\n<table class=\"dark-table\">    \n    <tbody>\n        <tr ng-repeat=\"item in msg.payload\">\n            <td>{{item.sensor}}</td>\n            <td>{{item.valor}} {{item.unidad}}</td>\n        </tr>\n    </tbody>\n</table>",
+        "width": "24",
+        "height": "8",
+        "format": "<style>\n    .dark-table {\n        width: 100%;\n        border-collapse: collapse;\n        font-family: 'Segoe UI', sans-serif;\n        font-size: 28px;\n        background-color: #1e1e1e;\n        color: #ffffff;\n        border-radius: 8px;\n        overflow: hidden;\n        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);\n    }\n\n    .dark-table th,\n    .dark-table td {\n        padding: 12px 16px;\n        text-align: left;\n        border-bottom: 1px solid #333;\n    }\n\n    .dark-table th {\n        background-color: #2d2d2d;\n        font-weight: bold;\n    }\n\n    .dark-table tr:hover {\n        background-color: #333333;\n    }\n\n    .valor-celda {\n        color: #00aacc;\n        /* Cambia a cualquier color que prefieras */\n        font-size: 37px;\n        /* Más grande que el resto */\n        font-weight: bold;\n    }\n</style>\n\n<table class=\"dark-table\">\n    <tbody>\n        <tr ng-repeat=\"item in msg.payload\">\n            <td>{{item.sensor}}</td>\n            <td class=\"valor-celda\">{{item.valor}} {{item.unidad}}</td>\n        </tr>\n    </tbody>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -225,5 +228,21 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "9b5e6873ce9caec6",
+        "type": "debug",
+        "z": "f02000bddfb616f2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 140,
+        "wires": []
     }
 ]
