@@ -156,6 +156,16 @@
         "className": ""
     },
     {
+        "id": "59929c88b20502b5",
+        "type": "ui_spacer",
+        "z": "f02000bddfb616f2",
+        "name": "spacer",
+        "group": "6e7e701f2d4f700e",
+        "order": 1,
+        "width": "24",
+        "height": "2"
+    },
+    {
         "id": "bf7ce2e8147e689f",
         "type": "modbus-read",
         "z": "f02000bddfb616f2",
@@ -213,10 +223,10 @@
         "z": "f02000bddfb616f2",
         "group": "6e7e701f2d4f700e",
         "name": "",
-        "order": 0,
+        "order": 2,
         "width": "24",
-        "height": "8",
-        "format": "<style>\n    .dark-table {\n        width: 100%;\n        border-collapse: collapse;\n        font-family: 'Segoe UI', sans-serif;\n        font-size: 28px;\n        background-color: #1e1e1e;\n        color: #ffffff;\n        border-radius: 8px;\n        overflow: hidden;\n        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);\n    }\n\n    .dark-table th,\n    .dark-table td {\n        padding: 12px 16px;\n        text-align: left;\n        border-bottom: 1px solid #333;\n    }\n\n    .dark-table th {\n        background-color: #2d2d2d;\n        font-weight: bold;\n    }\n\n    .dark-table tr:hover {\n        background-color: #333333;\n    }\n\n    .valor-celda {\n        color: #00aacc;\n        /* Cambia a cualquier color que prefieras */\n        font-size: 37px;\n        /* Más grande que el resto */\n        font-weight: bold;\n    }\n</style>\n\n<table class=\"dark-table\">\n    <tbody>\n        <tr ng-repeat=\"item in msg.payload\">\n            <td>{{item.sensor}}</td>\n            <td class=\"valor-celda\">{{item.valor}} {{item.unidad}}</td>\n        </tr>\n    </tbody>\n</table>",
+        "height": "12",
+        "format": "<style>\n    .dark-table {\n        width: 100%;\n        border-collapse: collapse;\n        font-family: 'Segoe UI', sans-serif;\n        font-size: 28px;\n        background-color: #1e1e1e;\n        color: #ffffff;\n        border-radius: 8px;\n        overflow: hidden;\n        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);\n    }\n\n    .dark-table th,\n    .dark-table td {\n        padding: 20px 16px;\n        text-align: left;\n        border-bottom: 1px solid #333;\n    }\n\n    .dark-table th {\n        background-color: #2d2d2d;\n        font-weight: bold;\n    }\n\n    .dark-table tr:hover {\n        background-color: #333333;\n    }\n\n    .valor-celda {\n        color: #00aacc;\n        /* Cambia a cualquier color que prefieras */\n        font-size: 42px;\n        /* Más grande que el resto */\n        font-weight: bold;\n    }\n</style>\n\n<table class=\"dark-table\">\n    <tbody>\n        <tr ng-repeat=\"item in msg.payload\">\n            <td>{{item.sensor}}</td>\n            <td class=\"valor-celda\">{{item.valor}} {{item.unidad}}</td>\n        </tr>\n    </tbody>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
